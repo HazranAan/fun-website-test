@@ -1,0 +1,44 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s, color 0.5s;
+  background: linear-gradient(135deg, #5eb972, #155877);
+  color: #722e2e;
+}
+
+.container {
+  text-align: center;
+  padding: 30px;
+  background: rgba(254, 254, 254, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(179, 43, 43, 0.1);
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #222;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.15);
+  background: #7f2d2d;
+}
+
+/* Tema Gelap */
+.dark {
+  background: linear-gradient(135deg, #ac3c3c, #882568);
+  color: rgb(55, 135, 170);
+}
