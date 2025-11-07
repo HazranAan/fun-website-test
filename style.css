@@ -1,3 +1,32 @@
+@keyframes movingBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ BOKEH GLOW EFFECT BELAKANG BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.2), transparent 20%),
+              radial-gradient(circle at 90% 80%, rgba(255,255,255,0.15), transparent 25%),
+              radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 30%);
+  background-size: 200% 200%;
+  animation: floatingBokeh 10s infinite alternate ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes floatingBokeh {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🌤️ LIGHT MODE (default) */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -6,39 +35,140 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.5s, color 0.5s;
-  background: linear-gradient(135deg, #5eb972, #155877);
-  color: #722e2e;
+  transition: background 0.8s ease, color 0.5s ease;
+
+  background: linear-gradient(120deg, #84fab0, #8fd3f4, #a1c4fd, #c2e9fb);
+  background-size: 300% 300%;
+  animation: movingBackground 15s ease infinite;
+
+  color: #222;
+  position: relative;
+  z-index: 1;
 }
 
+/* 🌙 DARK MODE */
+body.dark {
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  background-size: 300% 300%;
+  animation: movingBackground 15s ease infinite;
+  color: #f5f5f5;
+}
+
+/* 🧊 Container */
 .container {
   text-align: center;
   padding: 30px;
-  background: rgba(254, 254, 254, 0.3);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 20px;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 4px 20px rgba(179, 43, 43, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  transition: background 0.5s ease;
+  position: relative;
+  z-index: 2;
 }
 
+/* 🧃 Buttons */
 button {
   margin: 10px;
-  padding: 10px 20px;
+  padding: 10px 25px;
   border: none;
-  border-radius: 12px;
-  background: #222;
-  color: white;
+  border-radius: 25px;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.4s ease, background 0.5s ease;
+  color: white;
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 button:hover {
-  transform: scale(1.15);
-  background: #7f2d2d;
+  transform: scale(1.1);
+  background: linear-gradient(90deg, #89f7fe, #66a6ff);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
 }
 
-/* Tema Gelap */
-.dark {
-  background: linear-gradient(135deg, #ac3c3c, #882568);
-  color: rgb(55, 135, 170);
+body.dark button {
+  background: linear-gradient(90deg, #3a3752, #58424c);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+body.dark button:hover {
+  background: linear-gradient(90deg, #141e30, #243b55);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+/* 📦 Kad Data */
+#dataContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.card {
+  width: 270px;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.10);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .card {
+  background: rgba(51, 51, 51, 0.9);
+  color: #fff;
+}
+
+/* 🧾 Form */
+form {
+  background: rgba(206, 243, 245, 0.1);
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 30px;
+  display: inline-block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease;
+}
+
+form input {
+  width: 85%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #222;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+form input:focus {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+/* ✨ Animation masuk */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container, .card, form {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+#result {
+  margin-top: 10px;
+  font-weight: bold;
 }
