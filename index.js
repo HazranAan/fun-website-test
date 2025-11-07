@@ -18,14 +18,13 @@ const quotes = [
 
 let darkMode = false;
 
-// Tukar Tema
+
 themeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   darkMode = !darkMode;
   themeBtn.textContent = darkMode ? "Tukar Tema 🌞" : "Tukar Tema 🌗";
 });
 
-// Tukar Mood / Mesej
 quoteBtn.addEventListener("click", () => {
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
   quote.textContent = randomQuote;
@@ -51,15 +50,15 @@ loadDataBtn.addEventListener("click", async () => {
     const response = await fetch("https://api.restful-api.dev/objects");
     const data = await response.json();
 
-    // kosongkan container dulu
+  
     dataContainer.innerHTML = "";
 
-    // ulang setiap item dalam data
+    
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       let detailsHTML = "";
 
-      // kalau item.data ada, papar semua key dan value
+      
       if (item.data) {
         for (let key in item.data) {
           detailsHTML += `<li><strong>${key}:</strong> ${item.data[key]}</li>`;
@@ -68,7 +67,7 @@ loadDataBtn.addEventListener("click", async () => {
         detailsHTML = "<li><em>No extra data</em></li>";
       }
 
-      // buat card untuk setiap item
+      
       const cardHTML = `
         <div class="card">
           <h3>${item.name}</h3>
@@ -76,7 +75,7 @@ loadDataBtn.addEventListener("click", async () => {
         </div>
       `;
 
-      // tambah ke dalam container
+      
       dataContainer.innerHTML += cardHTML;
     }
   } catch (error) {
@@ -85,14 +84,15 @@ loadDataBtn.addEventListener("click", async () => {
   }
 
   
-});form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // elak reload page
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
   const name = document.getElementById("name").value;
   const brand = document.getElementById("brand").value;
   const price = document.getElementById("price").value;
 
-  // data nak dihantar ke API
   const newData = {
     name: name,
     data: {
@@ -114,7 +114,6 @@ loadDataBtn.addEventListener("click", async () => {
     result.innerHTML = `<b>Berjaya!</b> Data baru disimpan dengan ID: ${resultData.id}`;
     result.style.color = "green";
 
-    // kosongkan input selepas submit
     form.reset();
 
   } catch (error) {
